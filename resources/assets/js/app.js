@@ -15,7 +15,11 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+if (window.localStorage.created) {
+    Vue.component('main-component', require('./components/Thankyou.vue'));
+} else {
+    Vue.component('main-component', require('./components/Stepper.vue'));
+}
 
 const app = new Vue({
     el: '#app'
