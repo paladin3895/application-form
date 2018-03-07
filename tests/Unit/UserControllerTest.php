@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Token;
 
 class UserControllerTest extends TestCase
 {
@@ -29,6 +30,9 @@ class UserControllerTest extends TestCase
      */
     public function testCreatingUserSuccess()
     {
+        $validToken = Token::create([
+            'email' => 'duydatyds+1@gmail.com',
+        ])->token;
         $response = $this->json('POST', '/user', [
             'firstname' => 'Dat',
             'lastname' => 'Pham',
@@ -36,6 +40,7 @@ class UserControllerTest extends TestCase
             'phone' => '0123456789',
             'dob' => '1990-01-01',
             'address' => '301/421 Queen street',
+            'token' => $validToken,
         ]);
 
         $response
@@ -47,6 +52,9 @@ class UserControllerTest extends TestCase
 
     public function testCreatingUserFailedDueToDuplicateEmail()
     {
+        $validToken = Token::create([
+            'email' => 'duydatyds@gmail.com',
+        ])->token;
         $response = $this->json('POST', '/user', [
             'firstname' => 'Dat',
             'lastname' => 'Pham',
@@ -54,6 +62,26 @@ class UserControllerTest extends TestCase
             'phone' => '0123456789',
             'dob' => '1990-01-01',
             'address' => '301/421 Queen street',
+            'token' => $validToken,
+        ]);
+
+        $response
+            ->assertStatus(409)
+            ->assertJson([
+                'status' => 0,
+            ]);
+    }
+
+    public function testCreatingUserFailedDueToInvalidToken()
+    {
+        $response = $this->json('POST', '/user', [
+            'firstname' => 'Dat',
+            'lastname' => 'Pham',
+            'email' => 'duydatyds@gmail.com',
+            'phone' => '0123456789',
+            'dob' => '1990-01-01',
+            'address' => '301/421 Queen street',
+            'token' => 'invalid',
         ]);
 
         $response
