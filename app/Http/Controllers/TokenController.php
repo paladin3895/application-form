@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Token;
+use Mail;
 use Validator;
 use Response;
 use Exception;
@@ -36,13 +37,16 @@ class TokenController extends Controller
         }
 
         try {
-            Token::create($request->all());
+
+            $token = Token::create($request->all());
+            $email = $request->get('email');
+            $this->sendToken($token->token, $email);
             return Response::json(['status' => 1]);
+
         } catch (Exeption $e) {
             return Response::json(['status' => 0], 500);
         }
     }
-
 
     /**
      * Check user email endpoint
@@ -51,12 +55,19 @@ class TokenController extends Controller
      */
     public function check($token, $email)
     {
-        $isValid = User::where('token', $token)
+        $isValid = Token::where('token', $token)
             ->where('email', $email)
             ->where('expired_at', '>=', date('Y-m-d H:i:s', time()))
             ->count();
         return Response::json([
             'isValid' => $isValid
         ]);
+    }
+
+    public function sendToken($token, $email) {
+        Mail::raw("Your confirmation code is: {$token}", function ($message) use ($email) {
+            $message->from(config('app.admin_email'));
+            $message->to($email);
+        });
     }
 }
