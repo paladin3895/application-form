@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/user/{email}', 'UserController@check');
+Route::post('/user', 'UserController@create');
+
+Route::get('/token/{token}/{email}', 'TokenController@check');
+Route::post('/token', 'TokenController@send');
