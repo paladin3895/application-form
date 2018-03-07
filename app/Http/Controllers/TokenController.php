@@ -65,7 +65,8 @@ class TokenController extends Controller
     }
 
     public function sendToken($token, $email) {
-        Mail::raw("Your confirmation code is: {$token}", function ($message) use ($email) {
+        $content = "Your confirmation code is: {$token} (this token will expire in 1 hour)";
+        Mail::raw($content, function ($message) use ($email) {
             $message->from(config('app.admin_email'));
             $message->to($email);
         });

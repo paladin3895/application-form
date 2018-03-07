@@ -20,8 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->date('dob');
-            $table->enum('gender', ['M', 'F']);
+            $table->enum('gender', ['M', 'F', 'O']);
             $table->string('address');
+            $table->string('cv')->nullable();
             $table->timestamps();
         });
     }
