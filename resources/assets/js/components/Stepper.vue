@@ -122,21 +122,11 @@
                 data.append('gender', window.localStorage.getItem('gender'));
                 data.append('address', window.localStorage.getItem('address'));
                 data.append('token', window.localStorage.getItem('token'));
-              if (window._uploadFile) {
-                data.append('cv', window._uploadFile);
-              }
+                if (window._uploadFile) {
+                    data.append('cv', window._uploadFile);
+                }
 
-              return axios.post('/user', data);
-                return axios.post('/user', {
-                    firstname: window.localStorage.getItem('firstname'),
-                    lastname: window.localStorage.getItem('lastname'),
-                    email: window.localStorage.getItem('email'),
-                    phone: window.localStorage.getItem('phone'),
-                    dob: window.localStorage.getItem('dob'),
-                    gender: window.localStorage.getItem('gender'),
-                    address: window.localStorage.getItem('address'),
-                    token: window.localStorage.getItem('token'),
-                })
+                return axios.post('/user', data);
             },
         }
     }

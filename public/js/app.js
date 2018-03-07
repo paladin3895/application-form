@@ -43364,16 +43364,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/user', data);
-            return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/user', {
-                firstname: window.localStorage.getItem('firstname'),
-                lastname: window.localStorage.getItem('lastname'),
-                email: window.localStorage.getItem('email'),
-                phone: window.localStorage.getItem('phone'),
-                dob: window.localStorage.getItem('dob'),
-                gender: window.localStorage.getItem('gender'),
-                address: window.localStorage.getItem('address'),
-                token: window.localStorage.getItem('token')
-            });
         }
     }
 });
