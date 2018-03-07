@@ -23,6 +23,7 @@ class TokenControllerTest extends TestCase
             'email' => 'duydatyds@gmail.com',
             'phone' => '0123456789',
             'dob' => '1990-01-01',
+            'gender' => 'M',
             'address' => '301/421 Queen street',
         ]);
         $this->validToken = Token::create([
