@@ -39,13 +39,7 @@ class UserController extends Controller
             'dob' => 'required|date',
             'phone' => 'required|max:255',
             'address' => 'required|max:255',
-            'gender' => [
-                function($attribute, $value, $fail) {
-                    if (!is_null($value) && !in_array($value, ['M', 'F', 'N'])) {
-                        return $fail($attribute.' is invalid.');
-                    }
-                },
-            ],
+            'gender' => 'in:M,F,N',
             'token' => [
                 'required',
                 Rule::exists('tokens')->where(function ($query) use ($request) {
