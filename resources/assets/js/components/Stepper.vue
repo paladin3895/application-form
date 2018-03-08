@@ -90,6 +90,7 @@
         computed: {},
         methods: {
             completeStep(payload) {
+                window.scrollTo(0, 0);
                 this.steps.forEach((step) => {
                     if (step.name === payload.name) {
                         step.completed = true;

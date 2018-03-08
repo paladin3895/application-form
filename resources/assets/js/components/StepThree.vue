@@ -1,5 +1,6 @@
 <template>
     <div style="padding: 2rem 3rem; text-align: left;">
+        <p>We have sent an email with confirmation code to your registered email. Please check and input the confirmation code here to finish.</p>
         <div class="field">
             <label class="label">Confirmation Code</label>
             <div class="control">

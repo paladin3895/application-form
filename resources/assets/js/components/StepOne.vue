@@ -1,7 +1,8 @@
 <template>
     <div style="padding: 2rem 3rem; text-align: left;">
+        <p>Please take time to provide your info to following fields (* required fields):</p>
         <div class="field">
-            <label class="label">First Name</label>
+            <label class="label">First Name *</label>
             <div class="control">
                 <input :class="['input', ($v.firstname.$error) ? 'is-danger' : '']" type="text" placeholder="Your first name"
                        v-model="firstname">
@@ -9,7 +10,7 @@
             <p v-if="$v.firstname.$error" class="help is-danger">Your firstname is required</p>
         </div>
         <div class="field">
-            <label class="label">Last Name</label>
+            <label class="label">Last Name *</label>
             <div class="control">
                 <input :class="['input', ($v.lastname.$error) ? 'is-danger' : '']" type="text" placeholder="Your last name"
                        v-model="lastname">
@@ -17,21 +18,21 @@
             <p v-if="$v.lastname.$error" class="help is-danger">Your lastname is required</p>
         </div>
         <div class="field">
-            <label class="label">Email</label>
+            <label class="label">Email *</label>
             <div class="control">
                 <input :class="['input', ($v.email.$error) ? 'is-danger' : '']"  type="text" placeholder="Your email" v-model="email">
             </div>
             <p v-if="$v.email.$error" class="help is-danger">This email is invalid or already registered</p>
         </div>
         <div class="field">
-            <label class="label">Phone</label>
+            <label class="label">Phone *</label>
             <div class="control">
                 <input :class="['input', ($v.phone.$error) ? 'is-danger' : '']"  type="text" placeholder="Your phone number" v-model="phone">
             </div>
             <p v-if="$v.phone.$error" class="help is-danger">Your phone number is required</p>
         </div>
         <div class="field">
-            <label class="label">Date of birth</label>
+            <label class="label">Date of birth *</label>
             <div class="control">
                 <input :class="['input', ($v.dob.$error) ? 'is-danger' : '']"  type="date" placeholder="Your birthdate" v-model="dob">
             </div>
@@ -49,10 +50,9 @@
                     </select>
                 </div>
             </div>
-            <p v-if="$v.gender.$error" class="help is-danger">This field is required</p>
         </div>
         <div class="field">
-            <label class="label">Address</label>
+            <label class="label">Address *</label>
             <div class="control">
                 <input :class="['input', ($v.address.$error) ? 'is-danger' : '']"  type="text" placeholder="Your address" v-model="address">
             </div>
@@ -115,9 +115,6 @@
                 required
             },
             dob: {
-                required,
-            },
-            gender: {
                 required,
             },
             address: {

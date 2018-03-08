@@ -43328,6 +43328,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {},
     methods: {
         completeStep: function completeStep(payload) {
+            window.scrollTo(0, 0);
             this.steps.forEach(function (step) {
                 if (step.name === payload.name) {
                     step.completed = true;
@@ -43543,9 +43544,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"]
         },
         dob: {
-            required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"]
-        },
-        gender: {
             required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"]
         },
         address: {
@@ -44842,8 +44840,14 @@ var render = function() {
     "div",
     { staticStyle: { padding: "2rem 3rem", "text-align": "left" } },
     [
+      _c("p", [
+        _vm._v(
+          "Please take time to provide your info to following fields (* required fields):"
+        )
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "field" }, [
-        _c("label", { staticClass: "label" }, [_vm._v("First Name")]),
+        _c("label", { staticClass: "label" }, [_vm._v("First Name *")]),
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
           _c("input", {
@@ -44877,7 +44881,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "field" }, [
-        _c("label", { staticClass: "label" }, [_vm._v("Last Name")]),
+        _c("label", { staticClass: "label" }, [_vm._v("Last Name *")]),
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
           _c("input", {
@@ -44911,7 +44915,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "field" }, [
-        _c("label", { staticClass: "label" }, [_vm._v("Email")]),
+        _c("label", { staticClass: "label" }, [_vm._v("Email *")]),
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
           _c("input", {
@@ -44945,7 +44949,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "field" }, [
-        _c("label", { staticClass: "label" }, [_vm._v("Phone")]),
+        _c("label", { staticClass: "label" }, [_vm._v("Phone *")]),
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
           _c("input", {
@@ -44979,7 +44983,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "field" }, [
-        _c("label", { staticClass: "label" }, [_vm._v("Date of birth")]),
+        _c("label", { staticClass: "label" }, [_vm._v("Date of birth *")]),
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
           _c("input", {
@@ -45057,17 +45061,11 @@ var render = function() {
               ]
             )
           ])
-        ]),
-        _vm._v(" "),
-        _vm.$v.gender.$error
-          ? _c("p", { staticClass: "help is-danger" }, [
-              _vm._v("This field is required")
-            ])
-          : _vm._e()
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "field" }, [
-        _c("label", { staticClass: "label" }, [_vm._v("Address")]),
+        _c("label", { staticClass: "label" }, [_vm._v("Address *")]),
         _vm._v(" "),
         _c("div", { staticClass: "control" }, [
           _c("input", {
@@ -46564,6 +46562,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -46654,6 +46653,12 @@ var render = function() {
     "div",
     { staticStyle: { padding: "2rem 3rem", "text-align": "left" } },
     [
+      _c("p", [
+        _vm._v(
+          "We have sent an email with confirmation code to your registered email. Please check and input the confirmation code here to finish."
+        )
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "field" }, [
         _c("label", { staticClass: "label" }, [_vm._v("Confirmation Code")]),
         _vm._v(" "),

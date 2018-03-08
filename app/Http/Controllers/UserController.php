@@ -39,7 +39,7 @@ class UserController extends Controller
             'dob' => 'required|date',
             'phone' => 'required|max:255',
             'address' => 'required|max:255',
-            'gender' => 'required|in:M,F,O',
+            'gender' => 'in:M,F,O',
             'token' => [
                 'required',
                 Rule::exists('tokens')->where(function ($query) use ($request) {
