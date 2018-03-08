@@ -31,3 +31,6 @@ That's all you need for the app to run since this project shipped with all front
 # 4. Database migrations
 The project source code shipped with its database migrations. After providing the correct configurations for the MySQL database to work in section 2, please run `php artisan migrate` to update the database schema. The migration not included database creation so you need to create an empty one with UTF8 support, using this query:
 `CREATE DATABASE [db_name] CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`
+
+# 5. Unit testing
+This project included unit tests for data models and controllers to check the hosting environment and identify potential issues. To run the test cases, run `./vendor/bin/phpunit` in the hosting environment and check the status. All test cases passed means that the web application is ready to go.
