@@ -25,6 +25,10 @@
             <div class="container">
                 <div class="columns">
                     <div class="column is-8 is-offset-2">
+                        <div :class="['notification', 'is-warning', error ? '' : 'hide']">
+                            <button class="delete" @click="clearError"></button>
+                            <p v-html="error">{{ error }}</p>
+                        </div>
                         <horizontal-stepper :steps="steps" @completed-step="completeStep" :top-buttons="true"
                                             @active-step="isStepActive" @stepper-finished="finish"></horizontal-stepper>
                     </div>
@@ -84,7 +88,8 @@
                         completed: false
                     }
                 ],
-                activeStep: 0
+                activeStep: 0,
+                error: '',
             }
         },
         computed: {},
@@ -107,11 +112,19 @@
                 })
             },
             finish(payload) {
-              return this.createUser()
-                  .then(() => {
-                      window.localStorage.setItem('created', true);
-                      window.location.reload();
-                  })
+                return this.createUser()
+                    .then(() => {
+                        window.localStorage.setItem('created', true);
+                        window.location.reload();
+                    })
+                    .catch(error => {
+                        const { errors } = error.response.data;
+                        this.error = '<b>Please fix the following issues in your application:</b><br/>' +
+                            Object.values(errors).join("<br/>");
+                    })
+            },
+            clearError() {
+                this.error = '';
             },
             createUser() {
                 const data = new FormData();
@@ -127,7 +140,7 @@
                     data.append('cv', window._uploadFile);
                 }
 
-                return axios.post('/user', data);
+                return axios.post('/user', data)
             },
         }
     }
@@ -193,4 +206,7 @@
     .vertical-separator .line {
         border-right: 1px solid #cccccc;
     }
+		.hide {
+				display: none;
+		}
 </style>

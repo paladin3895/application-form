@@ -44445,7 +44445,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n#app[data-v-c3621b2c] {\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n    text-align: center;\n    color: #2c3e50;\n}\n.pointer[data-v-c3621b2c] {\n    cursor: pointer;\n}\nh1[data-v-c3621b2c], h2[data-v-c3621b2c] {\n    font-weight: normal;\n}\nhr[data-v-c3621b2c] {\n    background-color: transparent;\n    border: none;\n    display: block;\n    height: inherit;\n    margin: 1.5rem 0;\n    border-top: dashed 1px;\n}\nli[data-v-c3621b2c] {\n    display: inline-block;\n    margin: 0 10px;\n}\na[data-v-c3621b2c] {\n    color: #0b99b9;\n    text-decoration: underline;\n}\n.text-medium-grey[data-v-c3621b2c] {\n    color: #333;\n}\n.text-light-grey[data-v-c3621b2c] {\n    color: #888;\n}\n.box.formated[data-v-c3621b2c] {\n    position: relative;\n    padding: 0;\n}\n.box.formated .heading[data-v-c3621b2c] {\n    font-size: 1rem;\n    text-transform: capitalize;\n    padding: .8rem 1.5rem;\n    background-color: #fafafa;\n}\n.box.formated .content[data-v-c3621b2c] {\n    padding: 1rem 2rem;\n}\ni.top-left[data-v-c3621b2c] {\n    position: absolute;\n    left: 1.5rem;\n    top: 0.8rem;\n}\n.vertical-separator[data-v-c3621b2c] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-pack: distribute;\n        justify-content: space-around;\n}\n.vertical-separator .line[data-v-c3621b2c] {\n    border-right: 1px solid #cccccc;\n}\n", ""]);
+exports.push([module.i, "\n#app[data-v-c3621b2c] {\n        -webkit-font-smoothing: antialiased;\n        -moz-osx-font-smoothing: grayscale;\n        text-align: center;\n        color: #2c3e50;\n}\n.pointer[data-v-c3621b2c] {\n        cursor: pointer;\n}\nh1[data-v-c3621b2c], h2[data-v-c3621b2c] {\n        font-weight: normal;\n}\nhr[data-v-c3621b2c] {\n        background-color: transparent;\n        border: none;\n        display: block;\n        height: inherit;\n        margin: 1.5rem 0;\n        border-top: dashed 1px;\n}\nli[data-v-c3621b2c] {\n        display: inline-block;\n        margin: 0 10px;\n}\na[data-v-c3621b2c] {\n        color: #0b99b9;\n        text-decoration: underline;\n}\n.text-medium-grey[data-v-c3621b2c] {\n        color: #333;\n}\n.text-light-grey[data-v-c3621b2c] {\n        color: #888;\n}\n.box.formated[data-v-c3621b2c] {\n        position: relative;\n        padding: 0;\n}\n.box.formated .heading[data-v-c3621b2c] {\n        font-size: 1rem;\n        text-transform: capitalize;\n        padding: .8rem 1.5rem;\n        background-color: #fafafa;\n}\n.box.formated .content[data-v-c3621b2c] {\n        padding: 1rem 2rem;\n}\ni.top-left[data-v-c3621b2c] {\n        position: absolute;\n        left: 1.5rem;\n        top: 0.8rem;\n}\n.vertical-separator[data-v-c3621b2c] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n}\n.vertical-separator .line[data-v-c3621b2c] {\n        border-right: 1px solid #cccccc;\n}\n.hide[data-v-c3621b2c] {\n\t\t\t\tdisplay: none;\n}\n", ""]);
 
 // exports
 
@@ -44545,6 +44545,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -44581,7 +44585,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 component: __WEBPACK_IMPORTED_MODULE_4__StepThree_vue___default.a,
                 completed: false
             }],
-            activeStep: 0
+            activeStep: 0,
+            error: ''
         };
     },
 
@@ -44605,10 +44610,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         finish: function finish(payload) {
+            var _this = this;
+
             return this.createUser().then(function () {
                 window.localStorage.setItem('created', true);
                 window.location.reload();
+            }).catch(function (error) {
+                var errors = error.response.data.errors;
+
+                _this.error = '<b>Please fix the following issues in your application:</b><br/>' + Object.values(errors).join("<br/>");
             });
+        },
+        clearError: function clearError() {
+            this.error = '';
         },
         createUser: function createUser() {
             var data = new FormData();
@@ -46809,6 +46823,27 @@ var render = function() {
               "div",
               { staticClass: "column is-8 is-offset-2" },
               [
+                _c(
+                  "div",
+                  {
+                    class: [
+                      "notification",
+                      "is-warning",
+                      _vm.error ? "" : "hide"
+                    ]
+                  },
+                  [
+                    _c("button", {
+                      staticClass: "delete",
+                      on: { click: _vm.clearError }
+                    }),
+                    _vm._v(" "),
+                    _c("p", { domProps: { innerHTML: _vm._s(_vm.error) } }, [
+                      _vm._v(_vm._s(_vm.error))
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
                 _c("horizontal-stepper", {
                   attrs: { steps: _vm.steps, "top-buttons": true },
                   on: {
