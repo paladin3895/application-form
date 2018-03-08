@@ -30,7 +30,7 @@
                             <p v-html="error">{{ error }}</p>
                         </div>
                         <horizontal-stepper :steps="steps" @completed-step="completeStep" :top-buttons="true"
-                                            @active-step="isStepActive" @stepper-finished="finish"></horizontal-stepper>
+                            @active-step="isStepActive" @stepper-finished="finish" keep-alive></horizontal-stepper>
                     </div>
                 </div>
             </div>

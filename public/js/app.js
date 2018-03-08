@@ -46845,7 +46845,11 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("horizontal-stepper", {
-                  attrs: { steps: _vm.steps, "top-buttons": true },
+                  attrs: {
+                    steps: _vm.steps,
+                    "top-buttons": true,
+                    "keep-alive": ""
+                  },
                   on: {
                     "completed-step": _vm.completeStep,
                     "active-step": _vm.isStepActive,
