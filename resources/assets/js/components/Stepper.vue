@@ -120,7 +120,7 @@
                 data.append('email', window.localStorage.getItem('email'));
                 data.append('phone', window.localStorage.getItem('phone'));
                 data.append('dob', window.localStorage.getItem('dob'));
-                data.append('gender', window.localStorage.getItem('gender'));
+                data.append('gender', window.localStorage.getItem('gender') || 'N');
                 data.append('address', window.localStorage.getItem('address'));
                 data.append('token', window.localStorage.getItem('token'));
                 if (window._uploadFile) {

@@ -44617,7 +44617,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             data.append('email', window.localStorage.getItem('email'));
             data.append('phone', window.localStorage.getItem('phone'));
             data.append('dob', window.localStorage.getItem('dob'));
-            data.append('gender', window.localStorage.getItem('gender'));
+            data.append('gender', window.localStorage.getItem('gender') || 'N');
             data.append('address', window.localStorage.getItem('address'));
             data.append('token', window.localStorage.getItem('token'));
             if (window._uploadFile) {
@@ -45359,7 +45359,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             email: '',
             phone: '',
             dob: '',
-            gender: 'N',
+            gender: '',
             address: '',
             fileInvalid: false
         };

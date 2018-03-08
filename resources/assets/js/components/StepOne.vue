@@ -80,7 +80,7 @@
                 email: '',
                 phone: '',
                 dob: '',
-                gender: 'N',
+                gender: '',
                 address: '',
                 fileInvalid: false,
             }
