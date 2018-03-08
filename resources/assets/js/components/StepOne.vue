@@ -43,10 +43,9 @@
             <div class="control">
                 <div class="select">
                     <select v-model="gender">
-                        <option disabled value="">Please select one</option>
+                        <option disabled value="N">Please select one</option>
                         <option value="M">Male</option>
                         <option value="F">Female</option>
-                        <option value="O">Others</option>
                     </select>
                 </div>
             </div>

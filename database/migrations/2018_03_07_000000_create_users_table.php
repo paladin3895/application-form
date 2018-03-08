@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->date('dob');
-            $table->enum('gender', ['M', 'F', 'O'])->nullable();
+            $table->enum('gender', ['M', 'F', 'N']);
             $table->string('address');
             $table->string('cv')->nullable();
             $table->timestamps();

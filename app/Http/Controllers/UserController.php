@@ -39,7 +39,13 @@ class UserController extends Controller
             'dob' => 'required|date',
             'phone' => 'required|max:255',
             'address' => 'required|max:255',
-            'gender' => 'in:M,F,O',
+            'gender' => [
+                function($attribute, $value, $fail) {
+                    if (!is_null($value) && !in_array($value, ['M', 'F', 'N'])) {
+                        return $fail($attribute.' is invalid.');
+                    }
+                },
+            ],
             'token' => [
                 'required',
                 Rule::exists('tokens')->where(function ($query) use ($request) {
@@ -58,10 +64,9 @@ class UserController extends Controller
         try {
             $user = new User($request->all());
             if ($request->file('cv')) {
-                $filePath = $request->file('cv')->storeAs(
-                    'resumes',
-                    "cv_{$user->firstname}_{$user->lastname}_{$request->get('token')}"
-                );
+                $file = $request->file('cv');
+                $filePath = $file->storeAs('resumes',
+                    "cv_{$user->firstname}_{$user->lastname}_{$request->get('token')}.{$file->getClientOriginalExtension()}");
                 $user->cv = $filePath;
             }
             $user->save();
@@ -87,10 +92,13 @@ class UserController extends Controller
     }
 
     public function sendMailToAdmin($user, $filePath = null) {
-        $userData = (new ArrayToTextTable([$user->toArray()]))->getTable();
+        $userData = (new ArrayToTextTable(
+            [array_only($user->toArray(), ['firstname', 'lastname', 'email', 'phone'])]
+        ))->getTable();
 
-        $content = "There is a successful application:\n{$userData}";
-        Mail::raw($content, function ($message) use ($filePath) {
+        $content = "There is a successful application:" . PHP_EOL . "{$userData}";
+        Mail::raw($content, function ($message) use ($user, $filePath) {
+            $message->subject("New successful application from {$user->firstname} {$user->lastname}");
             $message->from(config('app.admin_email'));
             $message->to(config('app.admin_email'));
             if ($filePath) {
